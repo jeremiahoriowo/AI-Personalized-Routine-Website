@@ -1,0 +1,127 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String?  @unique
+  password  String?
+  timezone  String
+  createdAt DateTime @default(now())
+
+  templates       RoutineTemplate[]
+  calendarDays    CalendarDay[]
+  dailyScores     DailyScore[]
+  weeklySummaries WeeklySummary[]
+  aiLogs          AIGenerationLog[]
+}
+
+model RoutineTemplate {
+  id          String   @id @default(cuid())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  title       String
+  periodType  String
+  isActive    Boolean  @default(true)
+  createdByAI Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  items        DayRoutineTemplateItem[]
+  calendarDays CalendarDay[]
+}
+
+model DayRoutineTemplateItem {
+  id              String          @id @default(cuid())
+  template        RoutineTemplate @relation(fields: [templateId], references: [id])
+  templateId      String
+  title           String
+  description     String?
+  category        String?
+  defaultWeight   Float           @default(1)
+  recommendedTime String?
+  customStartTime String?
+  customEndTime   String?
+  isOptional      Boolean         @default(false)
+  orderIndex      Int
+}
+
+model CalendarDay {
+  id         String           @id @default(cuid())
+  user       User             @relation(fields: [userId], references: [id])
+  userId     String
+  date       DateTime         @unique
+  template   RoutineTemplate? @relation(fields: [templateId], references: [id])
+  templateId String?
+  notes      String?
+  mood       String?
+  createdAt  DateTime         @default(now())
+
+  instances  DayRoutineInstance[]
+  dailyScore DailyScore?
+}
+
+model DayRoutineInstance {
+  id                     String      @id @default(cuid())
+  calendarDay            CalendarDay @relation(fields: [calendarDayId], references: [id])
+  calendarDayId          String
+  routineItemId          String
+  customTitle            String?
+  customWeight           Float?
+  customRecommendedTime  String?
+    customStartTime        String?
+    customEndTime          String?
+  isSkipped              Boolean     @default(false)
+  orderIndex             Int
+
+  check DayRoutineCheck?
+}
+
+model DayRoutineCheck {
+  id                   String             @id @default(cuid())
+  dayRoutineInstance   DayRoutineInstance @relation(fields: [dayRoutineInstanceId], references: [id])
+  dayRoutineInstanceId String             @unique
+  isCompleted          Boolean            @default(false)
+  completedAt          DateTime?
+  userNotes            String?
+  effortRating         Int?
+}
+
+model DailyScore {
+  id                 String      @id @default(cuid())
+  calendarDay        CalendarDay @relation(fields: [calendarDayId], references: [id])
+  calendarDayId      String      @unique
+  user               User        @relation(fields: [userId], references: [id])
+  userId             String
+  totalPossibleScore Float
+  achievedScore      Float
+  disciplineRating   Int
+  focusRating        Int
+  calculatedAt       DateTime    @default(now())
+}
+
+model WeeklySummary {
+  id                String   @id @default(cuid())
+  user              User     @relation(fields: [userId], references: [id])
+  userId            String
+  weekStartDate     DateTime
+  weekEndDate       DateTime
+  averageDiscipline Float
+  averageFocus      Float
+  consistencyScore  Float
+  insights          String?
+}
+
+model AIGenerationLog {
+  id             String   @id @default(cuid())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         String
+  generationType String
+  promptSummary  String
+  usedAt         DateTime @default(now())
+}
