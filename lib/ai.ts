@@ -1,14 +1,13 @@
-import OpenAI from 'openai'
-
-const getOpenAIClient = () => {
+const getOpenAIClient = async () => {
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) return null
+  const { default: OpenAI } = await import('openai')
   return new OpenAI({ apiKey })
 }
 
 // Generate a purpose-driven routine template using OpenAI
 export async function generateTemplateFromIntake(intake: any) {
-  const openai = getOpenAIClient()
+  const openai = await getOpenAIClient()
   if (!openai) {
     console.error('OPENAI_API_KEY not configured')
     return generateFallbackRoutine(intake)
