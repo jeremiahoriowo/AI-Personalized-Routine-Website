@@ -3,7 +3,14 @@ import bcrypt from 'bcryptjs'
 import type { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-const prisma = new PrismaClient()
+let prismaInstance: PrismaClient | null = null
+
+const getPrisma = () => {
+  if (!prismaInstance) {
+    prismaInstance = new PrismaClient()
+  }
+  return prismaInstance
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -18,6 +25,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error('Invalid credentials')
         }
 
+        const prisma = getPrisma()
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         })
