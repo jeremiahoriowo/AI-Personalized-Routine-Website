@@ -21,6 +21,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
+  const { default: prisma } = await import('../../../lib/prisma')
   const session = await getServerSession(authOptions)
   
   if (!session?.user?.id) {
