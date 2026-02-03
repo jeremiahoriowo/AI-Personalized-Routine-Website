@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
-import { calculateDailyScore } from '../../../../lib/scoring'
 import { authOptions } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
@@ -8,6 +7,7 @@ export const runtime = 'nodejs'
 
 export async function POST(req: Request) {
   const { default: prisma } = await import('../../../../lib/prisma')
+  const { calculateDailyScore } = await import('../../../../lib/scoring')
   try {
     const session = await getServerSession(authOptions)
     
