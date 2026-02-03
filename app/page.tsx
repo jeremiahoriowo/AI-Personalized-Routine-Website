@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 import { authOptions } from '@/lib/auth'
 import HomeContent from '@/components/HomeContent'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   const session = await getServerSession(authOptions)
 
