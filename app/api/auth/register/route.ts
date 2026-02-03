@@ -2,7 +2,17 @@ import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 
-const prisma = new PrismaClient()
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
+let prismaInstance: PrismaClient | null = null
+
+const getPrisma = () => {
+  if (!prismaInstance) {
+    prismaInstance = new PrismaClient()
+  }
+  return prismaInstance
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,6 +25,8 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
+
+    const prisma = getPrisma()
 
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
@@ -48,10 +60,10 @@ export async function POST(request: NextRequest) {
       },
       { status: 201 }
     )
-  } catch (error) {
+  } catch (error: any) {
     console.error('Registration error:', error)
     return NextResponse.json(
-      { error: 'An error occurred during registration' },
+      { error: error.message || 'Internal server error' },
       { status: 500 }
     )
   }
