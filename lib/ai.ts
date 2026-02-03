@@ -1,20 +1,15 @@
 import OpenAI from 'openai'
 
-// Validate API key exists on startup
-if (!process.env.OPENAI_API_KEY) {
-  console.error('ERROR: OPENAI_API_KEY not set in environment variables')
-  console.error('Please copy .env.local.example to .env and add your OpenAI API key')
-  console.error('Get one at: https://platform.openai.com/api-keys')
+const getOpenAIClient = () => {
+  const apiKey = process.env.OPENAI_API_KEY
+  if (!apiKey) return null
+  return new OpenAI({ apiKey })
 }
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-})
 
 // Generate a purpose-driven routine template using OpenAI
 export async function generateTemplateFromIntake(intake: any) {
-  // Verify API key exists
-  if (!process.env.OPENAI_API_KEY) {
+  const openai = getOpenAIClient()
+  if (!openai) {
     console.error('OPENAI_API_KEY not configured')
     return generateFallbackRoutine(intake)
   }
