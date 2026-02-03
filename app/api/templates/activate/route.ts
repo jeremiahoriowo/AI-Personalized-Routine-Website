@@ -3,6 +3,9 @@ import { getServerSession } from 'next-auth/next'
 import prisma from '../../../../lib/prisma'
 import { authOptions } from '@/lib/auth'
 
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
 export async function POST(req: Request) {
   try {
     const session = await getServerSession(authOptions)
@@ -39,3 +42,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }
+
