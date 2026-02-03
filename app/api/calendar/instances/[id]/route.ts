@@ -1,4 +1,3 @@
-import prisma from '../../../../../lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth'
@@ -10,6 +9,7 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const { default: prisma } = await import('../../../../../lib/prisma')
   try {
     const session = await getServerSession(authOptions)
     
@@ -49,6 +49,7 @@ export async function DELETE(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const { default: prisma } = await import('../../../../../lib/prisma')
   try {
     const session = await getServerSession(authOptions)
     

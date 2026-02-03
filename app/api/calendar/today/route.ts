@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
-import prisma from '../../../../lib/prisma'
 import { authOptions } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 export async function GET(req: Request) {
+  const { default: prisma } = await import('../../../../lib/prisma')
   try {
     const session = await getServerSession(authOptions)
     

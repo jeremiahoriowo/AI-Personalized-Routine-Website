@@ -1,4 +1,3 @@
-import prisma from '../../../../lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth'
@@ -7,6 +6,7 @@ export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 export async function POST(req: NextRequest) {
+  const { default: prisma } = await import('../../../../lib/prisma')
   try {
     const session = await getServerSession(authOptions)
     
