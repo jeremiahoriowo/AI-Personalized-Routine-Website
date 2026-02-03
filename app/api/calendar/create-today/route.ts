@@ -65,12 +65,12 @@ export async function POST(req: Request) {
         return exists
       }
       
-      return prisma.dayRoutineInstance.create({ data: { calendarDayId: calendarDay.id, routineItemId: it.id, customTitle: it.title, customWeight: it.defaultWeight, customRecommendedTime: it.recommendedTime, customStartTime: it.customStartTime, customEndTime: it.customEndTime, orderIndex: it.orderIndex } })
+      return prisma.dayRoutineInstance.create({ data: { calendarDayId: calendarDay!.id, routineItemId: it.id, customTitle: it.title, customWeight: it.defaultWeight, customRecommendedTime: it.recommendedTime, customStartTime: it.customStartTime, customEndTime: it.customEndTime, orderIndex: it.orderIndex } })
     }))
 
     // re-fetch calendar day with instances
     const updatedDay = await prisma.calendarDay.findUnique({
-      where: { id: calendarDay.id },
+      where: { id: calendarDay!.id },
       include: { instances: { include: { check: true } } }
     })
 
