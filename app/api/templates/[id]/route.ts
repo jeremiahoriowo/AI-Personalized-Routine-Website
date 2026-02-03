@@ -3,6 +3,9 @@ import { getServerSession } from 'next-auth/next'
 import prisma from '../../../../lib/prisma'
 import { authOptions } from '@/lib/auth'
 
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
 export async function DELETE(
   req: Request,
   { params }: { params: { id: string } }
