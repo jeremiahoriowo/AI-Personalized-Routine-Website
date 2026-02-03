@@ -242,7 +242,7 @@ function generateFallbackRoutine(intake: any) {
   })
   
   // Add other focus areas as separate practice blocks
-  focusAreas.slice(0, 2).forEach((area, idx) => {
+  focusAreas.slice(0, 2).forEach((area: string, idx: number) => {
     dayActivities.push({
       title: `${area} practice`,
       description: `Develop your skills in ${area}`,
