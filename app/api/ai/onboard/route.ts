@@ -4,6 +4,9 @@ import prisma from '../../../../lib/prisma'
 import { generateTemplateFromIntake } from '../../../../lib/ai'
 import { authOptions } from '@/lib/auth'
 
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
 export async function POST(req: Request) {
   try {
     const session = await getServerSession(authOptions)
