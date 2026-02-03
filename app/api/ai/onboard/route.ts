@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
-import prisma from '../../../../lib/prisma'
 import { authOptions } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
@@ -19,7 +18,8 @@ export async function POST(req: Request) {
     const intake = await req.json()
     const userId = session.user.id
 
-    // Dynamic import to avoid build-time execution
+    // Dynamic imports to avoid build-time execution
+    const { default: prisma } = await import('../../../../lib/prisma')
     const { generateTemplateFromIntake } = await import('../../../../lib/ai')
     const aiResult = await generateTemplateFromIntake(intake)
 
