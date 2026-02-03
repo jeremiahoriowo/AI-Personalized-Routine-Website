@@ -36,7 +36,10 @@ export async function POST(req: Request) {
 
     // if not, create it
     if (!calendarDay) {
-      calendarDay = await prisma.calendarDay.create({ data: { userId, date: start, templateId: template.id } })
+      calendarDay = await prisma.calendarDay.create({ 
+        data: { userId, date: start, templateId: template.id },
+        include: { instances: true }
+      })
     }
 
     // get existing instances for this day
