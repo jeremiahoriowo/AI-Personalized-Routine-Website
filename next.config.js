@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    serverComponentsExternalPackages: ['openai'],
+    serverComponentsExternalPackages: ['@google/generative-ai'],
   },
   // Disable static page generation for API routes
   generateBuildId: async () => {

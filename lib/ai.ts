@@ -1,15 +1,16 @@
-const getOpenAIClient = async () => {
-  const apiKey = process.env.OPENAI_API_KEY
+const getGeminiModel = async () => {
+  const apiKey = process.env.GEMINI_API_KEY
   if (!apiKey) return null
-  const { default: OpenAI } = await import('openai')
-  return new OpenAI({ apiKey })
+  const { GoogleGenerativeAI } = await import('@google/generative-ai')
+  const genAI = new GoogleGenerativeAI(apiKey)
+  return genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
 }
 
-// Generate a purpose-driven routine template using OpenAI
+// Generate a purpose-driven routine template using Gemini
 export async function generateTemplateFromIntake(intake: any) {
-  const openai = await getOpenAIClient()
-  if (!openai) {
-    console.error('OPENAI_API_KEY not configured')
+  const model = await getGeminiModel()
+  if (!model) {
+    console.error('GEMINI_API_KEY not configured')
     return generateFallbackRoutine(intake)
   }
   const systemPrompt = `You are a calm, thoughtful life coach and routine guide. Your philosophy:
@@ -76,20 +77,20 @@ Total items: 7-9 spread across morning/day/evening
 Make it feel like a coherent day (not fragmented), calm, and genuinely balanced.`
 
   try {
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt }
+    const response = await model.generateContent({
+      contents: [
+        {
+          role: 'user',
+          parts: [{ text: `${systemPrompt}\n\n${userPrompt}` }]
+        }
       ],
-      temperature: 0.7,
-      response_format: { type: 'json_object' }
+      generationConfig: { temperature: 0.7 }
     })
 
-    const content = completion.choices[0]?.message?.content
-    if (!content) throw new Error('No response from OpenAI')
+    const raw = response.response.text()
+    if (!raw) throw new Error('No response from Gemini')
 
-    let result = JSON.parse(content)
+    let result = parseJsonFromText(raw)
     
     // Validate and ensure proper structure
     if (!result.dailyRoutine || !result.dailyRoutine.morning) {
@@ -100,10 +101,20 @@ Make it feel like a coherent day (not fragmented), calm, and genuinely balanced.
 
     return result
   } catch (error: any) {
-    console.error('OpenAI generation error:', error)
+    console.error('Gemini generation error:', error)
     // Fallback to basic routine on error
     return generateFallbackRoutine(intake)
   }
+}
+
+function parseJsonFromText(text: string) {
+  const start = text.indexOf('{')
+  const end = text.lastIndexOf('}')
+  if (start === -1 || end === -1 || end <= start) {
+    throw new Error('Invalid JSON response from Gemini')
+  }
+  const jsonText = text.slice(start, end + 1)
+  return JSON.parse(jsonText)
 }
 
 function normalizeRoutine(result: any, intake: any) {
