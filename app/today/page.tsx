@@ -198,16 +198,16 @@ export default function TodayPage(){
     }
   }
 
-  if (loading) return <div className="text-xs md:text-sm text-gray-600 dark:text-slate-400 px-3 md:px-0">Loading...</div>
+  if (loading) return <div className="text-xs md:text-sm text-text-muted px-3 md:px-0">Loading...</div>
 
   if (error) return (
     <div className="space-y-3 md:space-y-4 px-3 md:px-0">
-      <h1 className="text-lg md:text-xl font-semibold dark:text-white">Today</h1>
+      <h1 className="text-lg md:text-xl font-semibold text-text">Today</h1>
       <div className="p-3 md:p-4 bg-red-50 border border-red-200 rounded text-red-800 dark:bg-red-900/30 dark:border-red-800 dark:text-red-200">
         <p className="font-medium text-sm md:text-base">Error:</p>
         <p className="text-xs md:text-sm">{error}</p>
       </div>
-      <button onClick={load} className="px-3 md:px-4 py-1.5 md:py-2 text-sm border rounded dark:border-slate-700 dark:text-slate-200">Retry</button>
+      <button onClick={load} className="px-3 md:px-4 py-1.5 md:py-2 text-sm border border-border-color rounded text-text hover:bg-surface">Retry</button>
     </div>
   )
 
@@ -218,10 +218,10 @@ export default function TodayPage(){
   if (hasNoTemplates && hasInstances) {
     return (
       <div className="space-y-3 md:space-y-4 px-3 md:px-0">
-        <h1 className="text-lg md:text-xl font-semibold dark:text-white">Today</h1>
+        <h1 className="text-lg md:text-xl font-semibold text-text">Today</h1>
         <div className="p-3 md:p-4 bg-yellow-50 border border-yellow-200 rounded dark:bg-yellow-900/20 dark:border-yellow-800">
           <p className="font-medium text-sm md:text-base">Cleaning up old data...</p>
-          <p className="text-xs md:text-sm text-gray-600 mt-2 dark:text-slate-400">Removing routines from deleted template.</p>
+          <p className="text-xs md:text-sm text-text-muted mt-2">Removing routines from deleted template.</p>
         </div>
       </div>
     )
@@ -230,21 +230,21 @@ export default function TodayPage(){
   if (!data?.found) {
     return (
       <div className="space-y-3 md:space-y-4 px-3 md:px-0">
-        <h1 className="text-lg md:text-xl font-semibold dark:text-white">Today</h1>
+        <h1 className="text-lg md:text-xl font-semibold text-text">Today</h1>
         {activeTemplate ? (
           <>
-            <p className="text-xs md:text-sm text-gray-600 dark:text-slate-400">No routine exists for today.</p>
-            <button onClick={createToday} className="px-3 md:px-4 py-1.5 md:py-2 text-sm bg-calm-500 text-white rounded">Create today's routine from active template</button>
+            <p className="text-xs md:text-sm text-text-muted">No routine exists for today.</p>
+            <button onClick={createToday} className="px-3 md:px-4 py-1.5 md:py-2 text-sm bg-accent text-base rounded">Create today's routine from active template</button>
           </>
         ) : (
           <>
             <div className="p-3 md:p-4 bg-yellow-50 border border-yellow-200 rounded dark:bg-yellow-900/20 dark:border-yellow-800">
               <p className="font-medium text-sm md:text-base">No templates found</p>
-              <p className="text-xs md:text-sm text-gray-600 mt-2 dark:text-slate-400">All your templates have been deleted. Let's create a new routine to get started.</p>
+              <p className="text-xs md:text-sm text-text-muted mt-2">All your templates have been deleted. Let's create a new routine to get started.</p>
             </div>
             <button 
               onClick={() => window.location.href = '/onboarding'}
-              className="px-3 md:px-4 py-1.5 md:py-2 text-sm bg-calm-500 text-white rounded"
+              className="px-3 md:px-4 py-1.5 md:py-2 text-sm bg-accent text-base rounded"
             >
               Create New Routine
             </button>
@@ -261,7 +261,7 @@ export default function TodayPage(){
   if (!day.instances || day.instances.length === 0) {
     return (
       <div className="space-y-3 md:space-y-4 px-3 md:px-0">
-        <h1 className="text-lg md:text-xl font-semibold dark:text-white">Today — {new Date(day.date).toDateString()}</h1>
+        <h1 className="text-lg md:text-xl font-semibold text-text">Today — {new Date(day.date).toDateString()}</h1>
         <div className="p-3 md:p-4 bg-yellow-50 border border-yellow-200 rounded dark:bg-yellow-900/20 dark:border-yellow-800">
           <p className="font-medium text-sm md:text-base">No routine items for today</p>
           <button onClick={createToday} className="mt-2 px-2 md:px-3 py-1 bg-yellow-600 text-white text-xs md:text-sm rounded">Create from template</button>
@@ -273,7 +273,7 @@ export default function TodayPage(){
   return (
     <div className="space-y-3 md:space-y-4 pb-8 px-3 md:px-0">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-3">
-        <h1 className="text-lg md:text-xl font-semibold dark:text-white">Today — {new Date(day.date).toDateString()}</h1>
+        <h1 className="text-lg md:text-xl font-semibold text-text">Today — {new Date(day.date).toDateString()}</h1>
         <div className="flex gap-2 w-full sm:w-auto">
           <button
             onClick={() => setIsAdding(true)}
@@ -283,7 +283,7 @@ export default function TodayPage(){
           </button>
           <button 
             onClick={createToday}
-            className="flex-1 sm:flex-none px-2 md:px-3 py-1 text-xs md:text-sm border border-calm-300 text-calm-600 rounded hover:bg-calm-50 dark:border-slate-700 dark:text-calm-200 dark:hover:bg-slate-800"
+            className="flex-1 sm:flex-none px-2 md:px-3 py-1 text-xs md:text-sm border border-accent/30 text-accent rounded hover:bg-accent/10"
           >
             🔄 Recreate
           </button>

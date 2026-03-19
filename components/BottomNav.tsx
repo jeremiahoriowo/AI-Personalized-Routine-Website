@@ -13,7 +13,7 @@ export default function BottomNav(){
   ]
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t py-2 px-3 sm:px-4 dark:bg-slate-950 dark:border-slate-800">
+    <nav className="fixed bottom-0 left-0 right-0 bg-base border-t border-surface py-2 px-3 sm:px-4">
       <div className="max-w-2xl mx-auto flex justify-between">
         {navItems.map(item => {
           const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
@@ -23,8 +23,8 @@ export default function BottomNav(){
               href={item.href}
               className={`text-xs sm:text-sm px-2 md:px-3 py-1.5 md:py-2 rounded-md transition ${
                 isActive
-                  ? 'bg-calm-50 text-calm-500 dark:bg-slate-800 dark:text-calm-200'
-                  : 'text-gray-700 hover:text-gray-900 dark:text-slate-200 dark:hover:text-white'
+                  ? 'bg-surface text-accent font-medium'
+                  : 'text-text hover:bg-surface'
               }`}
             >
               {item.label}

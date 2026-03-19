@@ -1,0 +1,94 @@
+/* Default Theme */
+:root {
+  --color-base: #ffffff;
+  --color-surface: #f1f5f9;
+  --color-accent: #2563eb;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-border: #cbd5e1;
+  --font-family: 'Inter', sans-serif;
+}
+
+/* CALM MODE */
+[data-mode="calm"][data-theme="light"] {
+  --color-base: #fafaf9;
+  --color-surface: #f5f5f3;
+  --color-accent: #7bae9e;
+  --color-text: #1a1a1a;
+  --color-text-muted: #717171;
+  --color-border: #d6d3ce;
+  --font-family: 'Inter', sans-serif;
+}
+
+[data-mode="calm"][data-theme="dark"] {
+  --color-base: #1f2421;
+  --color-surface: #2a2f2b;
+  --color-accent: #9dd4c3;
+  --color-text: #efefef;
+  --color-text-muted: #a9a9a9;
+  --color-border: #404440;
+  --font-family: 'Inter', sans-serif;
+}
+
+/* PROFESSIONAL MODE */
+[data-mode="professional"][data-theme="light"] {
+  --color-base: #ffffff;
+  --color-surface: #f8fafc;
+  --color-accent: #1d4ed8;
+  --color-text: #020617;
+  --color-text-muted: #475569;
+  --color-border: #cbd5e1;
+  --font-family: 'Inter', sans-serif;
+}
+
+[data-mode="professional"][data-theme="dark"] {
+  --color-base: #0b1220;
+  --color-surface: #1e293b;
+  --color-accent: #60a5fa;
+  --color-text: #f1f5f9;
+  --color-text-muted: #cbd5e1;
+  --color-border: #334155;
+  --font-family: 'Inter', sans-serif;
+}
+
+/* PLAYFUL MODE */
+[data-mode="playful"][data-theme="light"] {
+  --color-base: #fffbf5;
+  --color-surface: #fff0e6;
+  --color-accent: #ea580c;
+  --color-text: #292109;
+  --color-text-muted: #78512b;
+  --color-border: #ffcb99;
+  --font-family: 'Poppins', sans-serif;
+}
+
+[data-mode="playful"][data-theme="dark"] {
+  --color-base: #1f1a16;
+  --color-surface: #2a231e;
+  --color-accent: #fd951f;
+  --color-text: #fef5ed;
+  --color-text-muted: #dab894;
+  --color-border: #4a3f38;
+  --font-family: 'Poppins', sans-serif;
+}
+
+/* DISCIPLINED MODE */
+[data-mode="disciplined"][data-theme="light"] {
+  --color-base: #fafafa;
+  --color-surface: #e4e4e7;
+  --color-accent: #d97706;
+  --color-text: #09090b;
+  --color-text-muted: #52525b;
+  --color-border: #d4d4d8;
+  --font-family: 'IBM Plex Sans', sans-serif;
+}
+
+[data-mode="disciplined"][data-theme="dark"] {
+  --color-base: #09090b;
+  --color-surface: #27272a;
+  --color-accent: #fbbf24;
+  --color-text: #fafafa;
+  --color-text-muted: #a1a1a1;
+  --color-border: #3f3f46;
+  --font-family: 'IBM Plex Sans', sans-serif;
+}
