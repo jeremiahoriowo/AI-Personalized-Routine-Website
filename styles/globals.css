@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Lato:wght@400;500;700&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap");
 @import "./theme.css";
 @tailwind base;
 @tailwind components;
@@ -14,8 +15,20 @@ html,body,#root{
 body {
   background-color: var(--color-base);
   color: var(--color-text);
-  font-family: var(--font-family);
+  font-family: var(--font-main);
   border-color: var(--color-border);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
+}
+
+label,
+small,
+time,
+.text-text-muted,
+.text-xs {
+  font-family: var(--font-mini);
 }
 
 /* Ensure theme cascade to all children */
@@ -25,4 +38,18 @@ html * {
 
 html[data-theme="dark"] * {
   color-scheme: dark;
+}
+
+@layer components {
+  .btn-standout {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-accent bg-accent text-white font-semibold shadow-sm transition hover:brightness-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-border-color bg-surface text-text font-medium shadow-sm transition hover:border-accent hover:text-accent hover:bg-base disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-red-600 bg-red-600 text-white font-semibold shadow-sm transition hover:border-red-700 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
 }

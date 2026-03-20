@@ -71,17 +71,25 @@ export default function OnboardingPage() {
 
   return (
     <div className="space-y-6 pb-20">
-      <h1 className="text-xl font-semibold">AI Coach Onboarding</h1>
-      <p className="text-sm text-gray-600 dark:text-slate-400">Answer these gently. The AI will suggest a calm, realistic routine.</p>
+      <h1 className="text-xl font-semibold text-text">AI Coach Onboarding</h1>
+      <p className="text-sm text-text-muted">Answer these gently. The AI will suggest a calm, realistic routine.</p>
 
       <form onSubmit={onSubmit} className="space-y-4">
         {QUESTIONS.map(q => (
           <div key={q.id}>
-            <label className="block text-sm font-medium mb-1">{q.label}</label>
+            <label className="block text-sm font-medium text-text mb-1">{q.label}</label>
             {q.type === 'text' ? (
-              <input value={form[q.id]} onChange={e => onChange(q.id, e.target.value)} className="w-full p-2 border rounded dark:bg-slate-900 dark:border-slate-700 dark:text-white" />
+              <input
+                value={form[q.id]}
+                onChange={e => onChange(q.id, e.target.value)}
+                className="w-full p-2 border border-border-color bg-base text-text rounded placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/40"
+              />
             ) : (
-              <select value={form[q.id]} onChange={e => onChange(q.id, e.target.value)} className="w-full p-2 border rounded dark:bg-slate-900 dark:border-slate-700 dark:text-white">
+              <select
+                value={form[q.id]}
+                onChange={e => onChange(q.id, e.target.value)}
+                className="w-full p-2 border border-border-color bg-base text-text rounded focus:outline-none focus:ring-2 focus:ring-accent/40"
+              >
                 <option value="">Select</option>
                 {q.options?.map(opt => (
                   <option key={opt} value={opt}>{opt}</option>
@@ -92,7 +100,11 @@ export default function OnboardingPage() {
         ))}
 
         <div>
-          <button type="submit" className="px-4 py-2 bg-calm-500 text-white rounded hover:bg-calm-600 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>
+          <button
+            type="submit"
+            className="px-4 py-2 bg-accent text-white rounded hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={loading}
+          >
             {loading ? 'Generating...' : 'Create Routine'}
           </button>
         </div>

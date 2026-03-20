@@ -10,6 +10,10 @@ export default function ConditionalThemeToggle() {
   const { data: session } = useSession()
   const isHomePage = pathname === '/'
 
+  const handleThemeTesterToggle = () => {
+    window.dispatchEvent(new Event('routine-theme-tester-toggle'))
+  }
+
   return (
     <div
       className={`fixed top-4 z-50 flex items-center gap-2 right-4 left-auto md:right-auto ${
@@ -17,6 +21,13 @@ export default function ConditionalThemeToggle() {
       }`}
     >
       {session && <LogoutButton />}
+      <button
+        type="button"
+        onClick={handleThemeTesterToggle}
+        className="btn-ghost px-3 py-1.5 text-xs"
+      >
+        Theme
+      </button>
       <ThemeToggle />
     </div>
   )

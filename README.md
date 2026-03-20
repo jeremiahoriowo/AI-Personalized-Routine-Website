@@ -64,7 +64,7 @@ This app now includes **full-stack user authentication** with NextAuth.js. See [
 ## 📋 Tech Stack
 
 - **Framework**: Next.js 14.2.0 (App Router)
-- **Database**: SQLite with Prisma ORM
+- **Database**: PostgreSQL with Prisma ORM
 - **Styling**: Tailwind CSS with calm color palette
 - **AI**: OpenAI API (gpt-4o-mini) for routine generation
 - **Language**: TypeScript 5.1.6
@@ -96,13 +96,13 @@ This app now includes **full-stack user authentication** with NextAuth.js. See [
    ```
    Then edit `.env` and add:
    ```
-   DATABASE_URL="file:./dev.db"
+   DATABASE_URL="postgresql://postgres:postgres@localhost:5432/routine_builder?schema=public"
    OPENAI_API_KEY="your-api-key-here"
    ```
 
 4. **Initialize database**
    ```bash
-   npx prisma db push
+   npx prisma migrate deploy
    npx prisma generate
    ```
 

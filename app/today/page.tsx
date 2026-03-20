@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
+import { Plus, RotateCw, Clock, Timer, Check, Circle, Edit, Trash2 } from 'lucide-react'
 
 export default function TodayPage(){
   const [loading, setLoading] = useState(true)
@@ -203,7 +204,7 @@ export default function TodayPage(){
   if (error) return (
     <div className="space-y-3 md:space-y-4 px-3 md:px-0">
       <h1 className="text-lg md:text-xl font-semibold text-text">Today</h1>
-      <div className="p-3 md:p-4 bg-red-50 border border-red-200 rounded text-red-800 dark:bg-red-900/30 dark:border-red-800 dark:text-red-200">
+      <div className="p-3 md:p-4 bg-red-50 border border-red-300 rounded text-red-700">
         <p className="font-medium text-sm md:text-base">Error:</p>
         <p className="text-xs md:text-sm">{error}</p>
       </div>
@@ -219,8 +220,8 @@ export default function TodayPage(){
     return (
       <div className="space-y-3 md:space-y-4 px-3 md:px-0">
         <h1 className="text-lg md:text-xl font-semibold text-text">Today</h1>
-        <div className="p-3 md:p-4 bg-yellow-50 border border-yellow-200 rounded dark:bg-yellow-900/20 dark:border-yellow-800">
-          <p className="font-medium text-sm md:text-base">Cleaning up old data...</p>
+        <div className="p-3 md:p-4 bg-surface border border-border-color rounded">
+          <p className="font-medium text-sm md:text-base text-text">Cleaning up old data...</p>
           <p className="text-xs md:text-sm text-text-muted mt-2">Removing routines from deleted template.</p>
         </div>
       </div>
@@ -234,17 +235,17 @@ export default function TodayPage(){
         {activeTemplate ? (
           <>
             <p className="text-xs md:text-sm text-text-muted">No routine exists for today.</p>
-            <button onClick={createToday} className="px-3 md:px-4 py-1.5 md:py-2 text-sm bg-accent text-base rounded">Create today's routine from active template</button>
+            <button onClick={createToday} className="px-3 md:px-4 py-1.5 md:py-2 text-sm bg-accent text-white rounded hover:opacity-90">Create today's routine from active template</button>
           </>
         ) : (
           <>
-            <div className="p-3 md:p-4 bg-yellow-50 border border-yellow-200 rounded dark:bg-yellow-900/20 dark:border-yellow-800">
-              <p className="font-medium text-sm md:text-base">No templates found</p>
+            <div className="p-3 md:p-4 bg-surface border border-border-color rounded">
+              <p className="font-medium text-sm md:text-base text-text">No templates found</p>
               <p className="text-xs md:text-sm text-text-muted mt-2">All your templates have been deleted. Let's create a new routine to get started.</p>
             </div>
             <button 
               onClick={() => window.location.href = '/onboarding'}
-              className="px-3 md:px-4 py-1.5 md:py-2 text-sm bg-accent text-base rounded"
+              className="px-3 md:px-4 py-1.5 md:py-2 text-sm bg-accent text-white rounded hover:opacity-90"
             >
               Create New Routine
             </button>
@@ -262,9 +263,9 @@ export default function TodayPage(){
     return (
       <div className="space-y-3 md:space-y-4 px-3 md:px-0">
         <h1 className="text-lg md:text-xl font-semibold text-text">Today — {new Date(day.date).toDateString()}</h1>
-        <div className="p-3 md:p-4 bg-yellow-50 border border-yellow-200 rounded dark:bg-yellow-900/20 dark:border-yellow-800">
-          <p className="font-medium text-sm md:text-base">No routine items for today</p>
-          <button onClick={createToday} className="mt-2 px-2 md:px-3 py-1 bg-yellow-600 text-white text-xs md:text-sm rounded">Create from template</button>
+        <div className="p-3 md:p-4 bg-surface border border-border-color rounded">
+          <p className="font-medium text-sm md:text-base text-text">No routine items for today</p>
+          <button onClick={createToday} className="mt-2 px-2 md:px-3 py-1 bg-accent text-white text-xs md:text-sm rounded hover:opacity-90">Create from template</button>
         </div>
       </div>
     )
@@ -277,51 +278,53 @@ export default function TodayPage(){
         <div className="flex gap-2 w-full sm:w-auto">
           <button
             onClick={() => setIsAdding(true)}
-            className="flex-1 sm:flex-none px-2 md:px-3 py-1 text-xs md:text-sm border border-blue-300 text-blue-700 rounded hover:bg-blue-50 dark:border-blue-800 dark:text-blue-200 dark:hover:bg-blue-900/30"
+            className="flex-1 sm:flex-none px-2 md:px-3 py-1 text-xs md:text-sm border border-border-color text-text rounded hover:bg-surface"
           >
-            ➕ Add
+            <Plus className="w-4 h-4 inline mr-1" />
+            Add
           </button>
           <button 
             onClick={createToday}
             className="flex-1 sm:flex-none px-2 md:px-3 py-1 text-xs md:text-sm border border-accent/30 text-accent rounded hover:bg-accent/10"
           >
-            🔄 Recreate
+            <RotateCw className="w-4 h-4 inline mr-1" />
+            Recreate
           </button>
         </div>
       </div>
 
       {templateMismatch && (
-        <div className="p-2 md:p-3 bg-blue-50 border border-blue-300 rounded dark:bg-blue-900/20 dark:border-blue-800">
-          <p className="text-xs md:text-sm font-medium text-blue-900">Template changed</p>
-          <p className="text-xs text-blue-700 mt-1 dark:text-blue-200">You activated a different template. Recreate today's routine to apply the new template.</p>
-          <button onClick={createToday} className="mt-2 px-2 md:px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700">
+        <div className="p-2 md:p-3 bg-surface border border-border-color rounded">
+          <p className="text-xs md:text-sm font-medium text-text">Template changed</p>
+          <p className="text-xs text-text-muted mt-1">You activated a different template. Recreate today's routine to apply the new template.</p>
+          <button onClick={createToday} className="mt-2 px-2 md:px-3 py-1 bg-accent text-white text-xs rounded hover:opacity-90">
             Apply new template
           </button>
         </div>
       )}
       
       {score && (
-        <div className="p-2 md:p-3 bg-calm-50 border border-calm-200 rounded dark:bg-slate-900 dark:border-slate-700">
-          <p className="text-xs md:text-sm font-medium">Today's Score</p>
-          <p className="text-base md:text-lg font-bold text-calm-500">{score.disciplineRating}%</p>
-          <p className="text-xs text-gray-600 dark:text-slate-400">Progress: {score.achievedScore.toFixed(1)} / {score.totalPossibleScore.toFixed(1)}</p>
+        <div className="p-2 md:p-3 bg-accent/10 border border-accent/30 rounded">
+          <p className="text-xs md:text-sm font-medium text-text">Today's Score</p>
+          <p className=" md:text-lg font-bold text-accent">{score.disciplineRating}%</p>
+          <p className="text-xs text-text-muted">Progress: {score.achievedScore.toFixed(1)} / {score.totalPossibleScore.toFixed(1)}</p>
         </div>
       )}
 
       {isAdding && (
-        <div className="p-2 md:p-3 bg-white border border-blue-300 rounded space-y-2 dark:bg-slate-900 dark:border-blue-800">
+        <div className="p-2 md:p-3 bg-surface border border-border-color rounded space-y-2">
           <input
             type="text"
             value={addTitle}
             onChange={(e) => setAddTitle(e.target.value)}
-            className="w-full px-2 py-1 border rounded text-xs md:text-sm dark:bg-slate-950 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-400"
+            className="w-full px-2 py-1 border border-border-color bg-base text-text rounded text-xs md:text-sm placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/40"
             placeholder="Routine title"
           />
           <input
             type="number"
             value={addWeight}
             onChange={(e) => setAddWeight(e.target.value)}
-            className="w-full px-2 py-1 border rounded text-xs md:text-sm dark:bg-slate-950 dark:border-slate-700 dark:text-slate-100"
+            className="w-full px-2 py-1 border border-border-color bg-base text-text rounded text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-accent/40"
             placeholder="Weight"
             step="0.5"
           />
@@ -330,27 +333,27 @@ export default function TodayPage(){
               type="time"
               value={addStartTime}
               onChange={(e) => setAddStartTime(e.target.value)}
-              className="flex-1 px-2 py-1 border rounded text-xs md:text-sm dark:bg-slate-950 dark:border-slate-700 dark:text-slate-100"
+              className="flex-1 px-2 py-1 border border-border-color bg-base text-text rounded text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-accent/40"
               placeholder="Start time"
             />
             <input
               type="time"
               value={addEndTime}
               onChange={(e) => setAddEndTime(e.target.value)}
-              className="flex-1 px-2 py-1 border rounded text-xs md:text-sm dark:bg-slate-950 dark:border-slate-700 dark:text-slate-100"
+              className="flex-1 px-2 py-1 border border-border-color bg-base text-text rounded text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-accent/40"
               placeholder="End time"
             />
           </div>
           <div className="flex flex-col sm:flex-row gap-2">
             <button
               onClick={addRoutine}
-              className="flex-1 px-2 py-1 bg-blue-600 text-white text-xs md:text-sm rounded hover:bg-blue-700"
+              className="flex-1 px-2 py-1 bg-accent text-white text-xs md:text-sm rounded hover:opacity-90"
             >
               Add Routine
             </button>
             <button
               onClick={() => setIsAdding(false)}
-              className="flex-1 px-2 py-1 border rounded text-xs md:text-sm hover:bg-gray-50 dark:border-slate-700 dark:hover:bg-slate-800"
+              className="flex-1 px-2 py-1 border border-border-color rounded text-xs md:text-sm text-text hover:bg-base"
             >
               Cancel
             </button>
@@ -372,19 +375,19 @@ export default function TodayPage(){
           .map((it: any) => (
             <div key={it.id}>
             {editingId === it.id ? (
-              <div className="p-2 md:p-3 bg-white border border-blue-300 rounded space-y-2 dark:bg-slate-900 dark:border-blue-800">
+              <div className="p-2 md:p-3 bg-surface border border-border-color rounded space-y-2">
                 <input
                   type="text"
                   value={editTitle}
                   onChange={(e) => setEditTitle(e.target.value)}
-                  className="w-full px-2 py-1 border rounded text-xs md:text-sm dark:bg-slate-950 dark:border-slate-700 dark:text-slate-100"
+                  className="w-full px-2 py-1 border border-border-color bg-base text-text rounded text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-accent/40"
                   placeholder="Routine title"
                 />
                 <input
                   type="number"
                   value={editWeight}
                   onChange={(e) => setEditWeight(e.target.value)}
-                  className="w-full px-2 py-1 border rounded text-xs md:text-sm dark:bg-slate-950 dark:border-slate-700 dark:text-slate-100"
+                  className="w-full px-2 py-1 border border-border-color bg-base text-text rounded text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-accent/40"
                   placeholder="Weight"
                   step="0.5"
                 />
@@ -393,63 +396,78 @@ export default function TodayPage(){
                     type="time"
                     value={editStartTime}
                     onChange={(e) => setEditStartTime(e.target.value)}
-                    className="flex-1 px-2 py-1 border rounded text-xs md:text-sm dark:bg-slate-950 dark:border-slate-700 dark:text-slate-100"
+                    className="flex-1 px-2 py-1 border border-border-color bg-base text-text rounded text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-accent/40"
                     placeholder="Start time"
                   />
                   <input
                     type="time"
                     value={editEndTime}
                     onChange={(e) => setEditEndTime(e.target.value)}
-                    className="flex-1 px-2 py-1 border rounded text-xs md:text-sm dark:bg-slate-950 dark:border-slate-700 dark:text-slate-100"
+                    className="flex-1 px-2 py-1 border border-border-color bg-base text-text rounded text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-accent/40"
                     placeholder="End time"
                   />
                 </div>
                 <div className="flex flex-col sm:flex-row gap-2">
                   <button 
                     onClick={saveEdit}
-                    className="flex-1 px-2 py-1 bg-blue-600 text-white text-xs md:text-sm rounded hover:bg-blue-700"
+                    className="flex-1 px-2 py-1 bg-accent text-white text-xs md:text-sm rounded hover:opacity-90"
                   >
                     Save
                   </button>
                   <button 
                     onClick={() => setEditingId(null)}
-                    className="flex-1 px-2 py-1 border rounded text-xs md:text-sm hover:bg-gray-50 dark:border-slate-700 dark:hover:bg-slate-800"
+                    className="flex-1 px-2 py-1 border border-border-color rounded text-xs md:text-sm text-text hover:bg-base"
                   >
                     Cancel
                   </button>
                 </div>
               </div>
             ) : (
-              <div className={`p-2 md:p-3 bg-white border rounded flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-2 cursor-pointer hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800 ${it.check?.isCompleted ? 'border-green-300' : 'border-gray-200'} dark:border-slate-700`}>
+              <div className={`p-2 md:p-3 bg-surface border rounded flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-2 cursor-pointer hover:bg-base ${it.check?.isCompleted ? 'border-accent/40' : 'border-border-color'}`}>
                 <div className="flex-1 min-w-0">
-                  <div className={`font-medium text-xs md:text-sm ${it.check?.isCompleted ? 'line-through text-gray-400' : ''} dark:text-slate-100`}>{it.customTitle}</div>
-                  <div className="text-xs text-gray-500 flex flex-col sm:flex-row gap-1 sm:gap-2 dark:text-slate-400 mt-1 sm:mt-0">
+                  <div className={`font-medium text-xs md:text-sm text-text ${it.check?.isCompleted ? 'line-through text-text-muted' : ''}`}>{it.customTitle}</div>
+                  <div className="text-xs text-text-muted flex flex-col sm:flex-row gap-1 sm:gap-2 mt-1 sm:mt-0">
                     {(it.customStartTime && it.customEndTime) && (
-                      <span>🕐 {formatTime12h(it.customStartTime)} - {formatTime12h(it.customEndTime)}</span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        <span>{formatTime12h(it.customStartTime)} - {formatTime12h(it.customEndTime)}</span>
+                      </span>
                     )}
-                    {it.customRecommendedTime && !it.customStartTime && <span>⏱ {it.customRecommendedTime}</span>}
+                    {it.customRecommendedTime && !it.customStartTime && (
+                      <span className="flex items-center gap-1">
+                        <Timer className="w-3 h-3" />
+                        <span>{it.customRecommendedTime}</span>
+                      </span>
+                    )}
                     <span>Weight: {it.customWeight}</span>
                   </div>
                 </div>
                 <div className="flex gap-1 sm:gap-2 w-full sm:w-auto">
                   <button
                     onClick={() => openEdit(it)}
-                    className="flex-1 sm:flex-none px-1.5 md:px-2 py-1 text-xs border rounded hover:bg-blue-50 text-blue-600 dark:border-slate-700 dark:text-blue-200 dark:hover:bg-slate-800"
+                    className="flex-1 sm:flex-none px-1.5 md:px-2 py-1 text-xs border border-border-color rounded hover:bg-accent/10 text-accent"
                   >
-                    ✎ Edit
+                    <Edit className="w-3.5 h-3.5 inline mr-1" />
+                    Edit
                   </button>
                   <button
                     onClick={() => deleteRoutine(it.id)}
-                    className="flex-1 sm:flex-none px-1.5 md:px-2 py-1 text-xs border border-red-200 text-red-600 rounded hover:bg-red-50 dark:border-red-800 dark:text-red-300 dark:hover:bg-red-900/30"
+                    className="flex-1 sm:flex-none px-1.5 md:px-2 py-1 text-xs border border-red-300 text-red-600 rounded hover:bg-red-50"
                   >
-                    🗑 Delete
+                    <Trash2 className="w-3.5 h-3.5 inline mr-1" />
+                    Delete
                   </button>
                   <button
                     onClick={() => toggleCheck(it.id, it.check?.isCompleted || false)}
                     disabled={toggling === it.id}
-                    className={`flex-1 sm:flex-none px-2 md:px-3 py-1 rounded text-xs md:text-sm ${it.check?.isCompleted ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'} dark:bg-slate-800 dark:text-slate-200`}
+                    className={`flex-1 sm:flex-none px-2 md:px-3 py-1 rounded text-xs md:text-sm ${it.check?.isCompleted ? 'bg-accent text-white' : 'bg-base border border-border-color text-text-muted hover:bg-surface'}`}
                   >
-                    {toggling === it.id ? 'Updating...' : it.check?.isCompleted ? '✓ Done' : 'Mark done'}
+                    {toggling === it.id ? 'Updating...' : it.check?.isCompleted ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 inline mr-1" />
+                        Done
+                      </>
+                    ) : 'Mark done'}
                   </button>
                 </div>
               </div>

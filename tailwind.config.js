@@ -18,7 +18,17 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: "var(--font-family)"
+        sans: ["var(--font-main)"],
+        main: ["var(--font-main)"],
+        mini: ["var(--font-mini)"],
+        calmMain: ["Inter", "sans-serif"],
+        calmMini: ["Roboto", "sans-serif"],
+        proMain: ["IBM Plex Sans", "sans-serif"],
+        proMini: ["Open Sans", "sans-serif"],
+        playfulMain: ["Poppins", "sans-serif"],
+        playfulMini: ["Comic Neue", "sans-serif"],
+        structuredMain: ["Lato", "sans-serif"],
+        structuredMini: ["Raleway", "sans-serif"]
       }
     }
   },

@@ -13,7 +13,7 @@ export default function BottomNav(){
   ]
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-base border-t border-surface py-2 px-3 sm:px-4">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-base border-t border-surface py-2 px-3 sm:px-4">
       <div className="max-w-2xl mx-auto flex justify-between">
         {navItems.map(item => {
           const isActive = pathname === item.href || pathname.startsWith(item.href + '/')

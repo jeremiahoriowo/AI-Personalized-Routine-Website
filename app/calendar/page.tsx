@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react'
+import { ChevronLeft, ChevronRight, Clock, Timer, Check, Circle } from 'lucide-react'
 
 export default function CalendarPage() {
   const [currentMonth, setCurrentMonth] = useState(new Date())
@@ -77,7 +78,10 @@ export default function CalendarPage() {
   return (
     <div className="space-y-3 md:space-y-4 pb-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-3">
-        <button onClick={prevMonth} className="px-2 md:px-3 py-1 border border-border-color rounded text-xs md:text-sm text-text hover:bg-surface">← Prev</button>
+        <button onClick={prevMonth} className="inline-flex items-center gap-1 px-2 md:px-3 py-1 border border-border-color rounded text-xs md:text-sm text-text hover:bg-surface">
+          <ChevronLeft className="w-4 h-4" />
+          <span>Prev</span>
+        </button>
         
         <div className="flex gap-1 md:gap-2">
           <select 
@@ -101,7 +105,10 @@ export default function CalendarPage() {
           </select>
         </div>
 
-        <button onClick={nextMonth} className="px-2 md:px-3 py-1 border border-border-color rounded text-xs md:text-sm text-text hover:bg-surface">Next →</button>
+        <button onClick={nextMonth} className="inline-flex items-center gap-1 px-2 md:px-3 py-1 border border-border-color rounded text-xs md:text-sm text-text hover:bg-surface">
+          <span>Next</span>
+          <ChevronRight className="w-4 h-4" />
+        </button>
       </div>
 
       {loading ? (
@@ -160,13 +167,23 @@ export default function CalendarPage() {
                         {inst.customTitle}
                       </div>
                       {inst.customStartTime && inst.customEndTime ? (
-                        <div className="text-xs text-text-muted">🕐 {formatTime12h(inst.customStartTime)} - {formatTime12h(inst.customEndTime)}</div>
+                        <div className="text-xs text-text-muted flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          <span>{formatTime12h(inst.customStartTime)} - {formatTime12h(inst.customEndTime)}</span>
+                        </div>
                       ) : inst.customRecommendedTime ? (
-                        <div className="text-xs text-text-muted">⏱ {inst.customRecommendedTime}</div>
+                        <div className="text-xs text-text-muted flex items-center gap-1">
+                          <Timer className="w-3 h-3" />
+                          <span>{inst.customRecommendedTime}</span>
+                        </div>
                       ) : null}
                     </div>
-                    <span className={inst.check?.isCompleted ? 'text-green-600' : 'text-text-muted'}>
-                      {inst.check?.isCompleted ? '✓' : '○'}
+                    <span>
+                      {inst.check?.isCompleted ? (
+                        <Check className="w-4 h-4 text-green-600" />
+                      ) : (
+                        <Circle className="w-4 h-4 text-text-muted" />
+                      )}
                     </span>
                   </div>
                 ))}

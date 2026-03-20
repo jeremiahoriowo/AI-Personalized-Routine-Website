@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { Plus, Clock } from 'lucide-react'
 
 export default function ManualBuilder() {
   const router = useRouter()
@@ -122,7 +123,10 @@ export default function ManualBuilder() {
 
       {/* Add Activity Form */}
       <div className="p-3 md:p-4 bg-blue-50 border border-blue-200 rounded space-y-2 md:space-y-3 dark:bg-blue-900/20 dark:border-blue-800">
-        <h2 className="font-medium text-sm">➕ Add Activity</h2>
+        <h2 className="font-medium text-sm flex items-center gap-2">
+          <Plus className="w-4 h-4" />
+          <span>Add Activity</span>
+        </h2>
         <div>
           <label className="block text-xs font-medium mb-1">Activity Title</label>
           <input
@@ -183,7 +187,12 @@ export default function ManualBuilder() {
                 <div className="flex-1">
                   <div className="font-medium text-xs md:text-sm dark:text-slate-100">{activity.title}</div>
                   <div className="text-xs text-gray-600 mt-1 space-y-0.5 dark:text-slate-400">
-                    {activity.startTime && <div>🕐 {formatTime12h(activity.startTime)} - {formatTime12h(activity.endTime)}</div>}
+                    {activity.startTime && (
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        <span>{formatTime12h(activity.startTime)} - {formatTime12h(activity.endTime)}</span>
+                      </div>
+                    )}
                     <div>Weight: {activity.weight}</div>
                   </div>
                 </div>

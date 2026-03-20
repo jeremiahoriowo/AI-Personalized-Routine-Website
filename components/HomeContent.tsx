@@ -16,14 +16,14 @@ export default function HomeContent() {
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-text">
               Purpose-Driven Routine Builder
             </h1>
-            <p className="text-xs sm:text-sm md:text-base text-text opacity-70">
+            <p className="text-xs sm:text-sm md:text-[1rem] text-text-muted">
               Build rhythm without pressure. Create a daily flow that supports your goals,
               energy, and life — gently.
             </p>
             <div className="flex flex-col sm:flex-row gap-2 md:gap-3 pt-2">
               <Link
                 href="/register"
-                className="px-4 md:px-5 py-2 md:py-2.5 bg-accent text-base rounded-md text-sm font-medium hover:opacity-90 transition"
+                className="px-4 md:px-5 py-2 md:py-2.5 bg-accent text-white rounded-md text-sm font-medium hover:opacity-90 transition"
               >
                 Get Started
               </Link>
@@ -39,14 +39,14 @@ export default function HomeContent() {
           {/* Feature Cards on Left Side */}
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="p-4 border border-surface rounded-lg bg-base shadow-sm">
-              <h2 className="text-sm md:text-base font-semibold text-text">AI Coach Onboarding</h2>
-              <p className="text-xs md:text-sm text-text opacity-70 mt-1">
+              <h2 className="text-sm md:text-[1rem] font-semibold text-text">AI Coach Onboarding</h2>
+              <p className="text-xs md:text-sm text-text-muted mt-1">
                 Answer 12 gentle questions and get a balanced routine with time blocks.
               </p>
             </div>
             <div className="p-4 border border-surface rounded-lg bg-base shadow-sm">
-              <h2 className="text-sm md:text-base font-semibold text-text">Manual Builder</h2>
-              <p className="text-xs md:text-sm text-text opacity-70 mt-1">
+              <h2 className="text-sm md:text-[1rem] font-semibold text-text">Manual Builder</h2>
+              <p className="text-xs md:text-sm text-text-muted mt-1">
                 Add activities one by one, choose weights, and set your own time range.
               </p>
             </div>
@@ -55,16 +55,16 @@ export default function HomeContent() {
           {/* Stats on Left Side */}
           <div className="grid gap-2 grid-cols-3">
             <div className="p-3 rounded-lg bg-surface border border-surface">
-              <div className="text-xs text-text opacity-70">Daily Flow</div>
-              <div className="text-sm md:text-base font-medium text-text">7–9 focused blocks</div>
+              <div className="text-xs text-text-muted">Daily Flow</div>
+              <div className="text-sm md:text-[1rem] font-medium text-text">7–9 focused blocks</div>
             </div>
             <div className="p-3 rounded-lg bg-surface border border-surface">
-              <div className="text-xs text-text opacity-70">Time Ranges</div>
-              <div className="text-sm md:text-base font-medium text-text">Clear start–end times</div>
+              <div className="text-xs text-text-muted">Time Ranges</div>
+              <div className="text-sm md:text-[1rem] font-medium text-text">Clear start–end times</div>
             </div>
             <div className="p-3 rounded-lg bg-surface border border-surface">
-              <div className="text-xs text-text opacity-70">Gentle Scoring</div>
-              <div className="text-sm md:text-base font-medium text-text">Progress without pressure</div>
+              <div className="text-xs text-text-muted">Gentle Scoring</div>
+              <div className="text-sm md:text-[1rem] font-medium text-text">Progress without pressure</div>
             </div>
           </div>
         </div>

@@ -40,14 +40,14 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-slate-950 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-base px-4">
       <div className="w-full max-w-md">
         <div className="space-y-6">
           <div className="text-center space-y-2">
-            <h1 className="text-3xl font-semibold text-gray-900 dark:text-white">
+            <h1 className="text-3xl font-semibold text-text">
               Sign In
             </h1>
-            <p className="text-gray-600 dark:text-slate-400">
+            <p className="text-text-muted">
               Log in to your Routine Builder account
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function LoginPage() {
             )}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-text mb-2">
                 Email
               </label>
               <input
@@ -68,13 +68,13 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-calm-500 dark:bg-slate-900 dark:border-slate-700 dark:text-white dark:placeholder-slate-400"
+                className="w-full px-4 py-2 border border-border-color rounded-md bg-surface text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-accent"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-text mb-2">
                 Password
               </label>
               <input
@@ -82,7 +82,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-calm-500 dark:bg-slate-900 dark:border-slate-700 dark:text-white dark:placeholder-slate-400"
+                className="w-full px-4 py-2 border border-border-color rounded-md bg-surface text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-accent"
                 placeholder="Enter your password"
               />
             </div>
@@ -90,15 +90,15 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2 px-4 bg-calm-500 text-white rounded-md font-medium hover:bg-calm-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-2 px-4 bg-accent text-base rounded-md font-medium hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
 
-          <div className="text-center text-sm text-gray-600 dark:text-slate-400">
+          <div className="text-center text-sm text-text-muted">
             Don't have an account?{' '}
-            <Link href="/register" className="text-calm-600 hover:underline dark:text-calm-400">
+            <Link href="/register" className="text-accent hover:underline">
               Sign up
             </Link>
           </div>

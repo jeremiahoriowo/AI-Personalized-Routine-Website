@@ -28,7 +28,7 @@ npm install next-auth bcryptjs
 Add the following to your `.env` file:
 
 ```env
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/routine_builder?schema=public"
 NEXTAUTH_SECRET=your-secret-key-change-this-in-production
 NEXTAUTH_URL=http://localhost:3000
 ```

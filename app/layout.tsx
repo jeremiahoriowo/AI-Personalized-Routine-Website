@@ -5,6 +5,7 @@ import ThemeProvider from '../components/ThemeProvider'
 import ConditionalThemeToggle from '../components/ConditionalThemeToggle'
 import ThemeTester from '../components/ThemeTester'
 import SessionProvider from '../components/SessionProvider'
+import LiveBackground from '../components/LiveBackground'
 
 export const metadata = {
   title: 'Purpose-Driven Routine Builder',
@@ -16,9 +17,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-base text-text dark:bg-base dark:text-text overflow-x-hidden font-sans">
         <SessionProvider>
           <ThemeProvider>
+            <LiveBackground />
             <ConditionalThemeToggle />
             <ThemeTester />
-            <div className="min-h-screen max-w-2xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6">
+            <div className="relative z-10 min-h-screen max-w-2xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6">
               {children}
             </div>
             <ConditionalBottomNav />
