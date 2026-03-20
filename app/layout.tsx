@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import React from 'react'
+import type { Metadata } from 'next'
 import ConditionalBottomNav from '../components/ConditionalBottomNav'
 import ThemeProvider from '../components/ThemeProvider'
 import ConditionalThemeToggle from '../components/ConditionalThemeToggle'
@@ -7,8 +8,13 @@ import ThemeTester from '../components/ThemeTester'
 import SessionProvider from '../components/SessionProvider'
 import LiveBackground from '../components/LiveBackground'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Purpose-Driven Routine Builder',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
